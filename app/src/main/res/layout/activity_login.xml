@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.LoginActivity"
+    style="@style/Layout"
+    android:id="@+id/main_layout">
+
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:elevation="0dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:id="@+id/toolbar"
+            app:popupTheme="@style/AppTheme"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/layout_password"
+        android:id="@+id/layout_login"
+        app:hintEnabled="false">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/et_login"
+            style="@style/EditText.Login"
+            android:background="@drawable/edit_text_up"
+            android:hint="Login"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_password"
+        app:layout_constraintBottom_toTopOf="@id/btn_login"
+        app:hintEnabled="false"
+        android:layout_marginBottom="32dp"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/dividerColor">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/et_password"
+            android:background="@drawable/edit_text_down"
+            style="@style/EditText.Login.Password"
+            android:hint="Password"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_login"
+        android:background="@drawable/button_light"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        style="@style/Button.Login"
+        android:text="Log in"
+        android:enabled="false"
+        android:alpha="0.5"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_register"
+        android:background="@drawable/button_dark"
+        android:textColor="@color/textColorHint"
+        app:layout_constraintTop_toBottomOf="@id/btn_login"
+        style="@style/Button.Login"
+        android:text="Register now"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

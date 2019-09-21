@@ -1,0 +1,52 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/backgroundColorDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="View">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="Layout" parent="View">
+        <item name="android:background">@color/backgroundColorDark</item>
+    </style>
+
+    <style name="EditText" parent="View">
+        <item name="android:textColor">@color/textColorLight</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:background">@color/editTextBackground</item>
+        <item name="android:textColorHint">@color/textColorHint</item>
+    </style>
+
+    <style name="EditText.Login" parent="EditText">
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="EditText.Login.Password" parent="EditText.Login">
+        <item name="android:inputType">textPassword</item>
+    </style>
+
+    <style name="Button" parent="View">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Button.Login">
+        <item name="android:layout_margin">16dp</item>
+    </style>
+
+    <style name="TextView" parent="View">
+        <item name="android:textColor">@color/textColorLight</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+    </style>
+
+</resources>
