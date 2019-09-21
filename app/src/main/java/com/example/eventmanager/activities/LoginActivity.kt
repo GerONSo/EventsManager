@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.View
 import com.example.eventmanager.*
 import com.example.eventmanager.extensions.hideKeyboard
+import com.example.eventmanager.objects.Animator
+import com.example.eventmanager.objects.EditTextChangeHandler
 import kotlinx.android.synthetic.main.activity_login.*
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 

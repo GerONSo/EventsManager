@@ -1,4 +1,4 @@
-package com.example.eventmanager
+package com.example.eventmanager.objects
 
 import android.animation.ObjectAnimator
 import android.view.View
