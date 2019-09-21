@@ -9,8 +9,10 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eventmanager.R
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
+
 
     companion object{
         var CHOOSED_EVENT: Int? = null
@@ -18,7 +20,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         val recyclerView = findViewById<RecyclerView>(R.id.typeRecycler)
         val chooseTypeAdapter = ChooseTypeAdapter(listOf(Info("kek","flex"),
             Info("flex", "ti pidor"))) {position ->
