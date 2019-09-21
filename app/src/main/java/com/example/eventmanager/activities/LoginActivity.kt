@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
 
         }
         btn_login.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, EventActivity::class.java)
             startActivity(intent)
         }
         EditTextChangeHandler.addHandler(
