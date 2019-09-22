@@ -12,6 +12,10 @@ class MainRecyclerAdapter(
     val onItemCLickListener: (position: Int) -> Unit
 ) : RecyclerView.Adapter<MainRecyclerAdapter.CardHolder>(){
 
+    companion object{
+        var currentlyClicked: Int = 0
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardHolder {
         return CardHolder(LayoutInflater.from(parent.context).
             inflate(R.layout.card_layout, parent, false))
@@ -34,7 +38,10 @@ class MainRecyclerAdapter(
 
     inner class CardHolder(val view: View) : RecyclerView.ViewHolder(view){
         init {
-            view.setOnClickListener{ onItemCLickListener(adapterPosition) }
+            view.setOnClickListener{
+                currentlyClicked = adapterPosition
+                onItemCLickListener(adapterPosition)
+            }
         }
         val name = view.name
         var number = view.participants

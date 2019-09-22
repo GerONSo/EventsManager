@@ -50,8 +50,7 @@ class EventActivity : AppCompatActivity() {
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
         mainAdapter = MainRecyclerAdapter{
-            Toast.makeText(applicationContext, "$it",
-                Toast.LENGTH_LONG).show()
+            startActivity(Intent(this, FollowActivity::class.java))
         }
         mainRecycler.apply {
             adapter = mainAdapter
@@ -139,7 +138,8 @@ class EventActivity : AppCompatActivity() {
     private fun initViewModel() {
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         viewModel.getData().observe(this, Observer {
-            // TODO redraw recycler
+            MainViewModel.update()
+            mainRecycler.adapter!!.notifyDataSetChanged()
         })
     }
 

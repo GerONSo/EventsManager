@@ -20,6 +20,10 @@ class LoginActivity : AppCompatActivity() {
 
     companion object{
         lateinit var user: User
+        val superusers = listOf(User("glebik8","123456", true), User("seriy", "234567", true),
+            User("stepa","345678", true))
+        val users = listOf(User("glebik81","123456", false), User("seriy1", "234567", false),
+            User("stepa1","345678", false))
     }
     private lateinit var listForAnimating : List<View>
 
@@ -55,25 +59,27 @@ class LoginActivity : AppCompatActivity() {
 
         }
         btn_login.setOnClickListener {
-            user = User(et_login.text.toString(), et_password.text.toString(), true)
-            RegisterActivity.superusers.forEach {
-                val email = et_login_final.text.toString()
-                val password = et_password_final.text.toString()
+            user = User(et_login.text.toString(), et_password.text.toString(), false)
+            val email = et_login.text.toString()
+            val password = et_password.text.toString()
+            var enter: Boolean = false
+            superusers.forEach {
                 if (it.login == email && it.password == password) {
-                    RegisterActivity.user = User(email, password, true, "Gleb", "Voitenko")
+                    user = User(email, password, true, "Gleb", "Voitenko")
+                    enter = true
                     startActivity(Intent(this, EventActivity::class.java))
-
                 }
-
-                RegisterActivity.users.forEach {
-                    if (it.login == email && it.password == password) {
-                        RegisterActivity.user = User(email, password, false, "Gleb", "Voitenko")
-                        startActivity(Intent(this, EventActivity::class.java))
-
-                    }
-                }
-                Toast.makeText(applicationContext, "Ошибка, повторите ввод", Toast.LENGTH_LONG).show()
             }
+            if (!enter)
+                users.forEach {
+                if (it.login == email && it.password == password) {
+                    user = User(email, password, false, "Gleb", "Voitenko")
+                    enter = true
+                    startActivity(Intent(this, EventActivity::class.java))
+                }
+            }
+                Toast.makeText(applicationContext, "Ошибка, повторите ввод", Toast.LENGTH_LONG)
+                    .show()
         }
         EditTextChangeHandler.addHandler(
             listOf(et_login, et_password),

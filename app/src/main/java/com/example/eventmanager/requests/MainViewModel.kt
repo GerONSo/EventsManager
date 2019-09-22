@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.eventmanager.data.Event
 import com.example.eventmanager.activities.EventActivity
+import com.example.eventmanager.activities.FollowActivity
 import com.example.eventmanager.activities.LoginActivity
 import com.example.eventmanager.data.NewEvent
 import retrofit2.Call
@@ -72,6 +73,21 @@ object MainViewModel : ViewModel() {
 
         })
         update()
+    }
+
+    fun addToMy(onItemClickListener: () -> Unit) {
+        val call = api.add(FlexRespond(FollowActivity.name))
+        call.enqueue(object : Callback<FlexResponse>{
+            override fun onFailure(call: Call<FlexResponse>, t: Throwable) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onResponse(call: Call<FlexResponse>, response: Response<FlexResponse>) {
+                Log.d("Glebik","${response.body()}")
+                onItemClickListener()
+            }
+
+        })
     }
 
 }

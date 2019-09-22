@@ -14,11 +14,6 @@ import kotlinx.android.synthetic.main.activity_register.*
 class RegisterActivity : AppCompatActivity() {
 
     companion object{
-        lateinit var user: User
-        val superusers = listOf(User("glebik8","123456", true), User("seriy", "234567", true),
-            User("stepa","345678", true))
-        val users = listOf(User("glebik81","123456", true), User("seriy1", "234567", true),
-            User("stepa1","345678", true))
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
