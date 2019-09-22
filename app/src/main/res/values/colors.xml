@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#231F20</color>
-    <color name="colorPrimaryDark">#231F20</color>
-    <color name="colorAccent">#FFFFFF</color>
-    <color name="backgroundColorDark">#231F20</color>
+    <color name="colorPrimaryDark">#8aacc8</color>
+    <color name="colorAccent">#8aacc8</color>
+    <color name="backgroundColorDark">#FFFFFF</color>
     <color name="textColorLight">#FFFFFF</color>
     <color name="editTextBackground">#2C2728</color>
     <color name="textColorHint">#999999</color>
     <color name="dividerColor">#474747</color>
     <color name="materialYellow">#f9a825</color>
+    <color name="back_edit_text">#ADADAD</color>
+    <color name="gay_color">#bbdefb</color>
+    <color name="gay_color_dark">#8aacc8</color>
 </resources>

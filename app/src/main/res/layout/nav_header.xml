@@ -6,6 +6,7 @@
     android:layout_height="160dp"
     android:clickable="true"
     android:focusable="true"
+    android:background="@color/gay_color"
     android:foreground="?attr/selectableItemBackgroundBorderless"
     android:gravity="bottom"
     android:orientation="vertical"
@@ -25,5 +26,6 @@
         android:paddingTop="16dp"
         android:text="Chike Mgbemena"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        style="@style/TextView"/>
+        style="@style/TextView"
+        android:textColor="@color/colorPrimary"/>
 </LinearLayout>

@@ -1,5 +1,6 @@
 package com.example.eventmanager.activities
 
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -22,6 +23,8 @@ class EventActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
     private val menuItems = mutableListOf("My events", "Leisure", "Art", "Volunteering", "Patriotism",
         "Media", "Extreme", "Leadership", "Entrepreneurship", "Prevention", "Sport")
+    private val indexes = mutableListOf(R.drawable.calendar, R.drawable.a, R.drawable.b, R.drawable.c, R.drawable.d,
+        R.drawable.e, R.drawable.f, R.drawable.g, R.drawable.h, R.drawable.i, R.drawable.j)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,9 +38,9 @@ class EventActivity : AppCompatActivity() {
 
     private fun initViews() {
         initDrawer()
-        toolbar.setTitleTextColor(resources.getColor(R.color.textColorLight))
+        nv.itemIconTintList = null
         nv.setNavigationItemSelectedListener { menuItem ->
-            menuItem.isChecked = true
+//            menuItem.isChecked = true
             when(menuItem.itemId) {
                 228 -> {
 
@@ -84,16 +87,14 @@ class EventActivity : AppCompatActivity() {
         var navigationView: NavigationView = nv
         var menu = navigationView.menu
         if(true) { //TODO if superuser
-            menu.add(Menu.NONE, 0, 0, "")
-            menuItems.add(228, "Added events")
+            menu.add(Menu.NONE, 228, 0, "")
+            menuItems.add(0, "Added events")
+            indexes.add(0, R.drawable.checklist)
         }
         for(i in 0 until menu.size()) {
             var menuItem: MenuItem = menu.getItem(i)
-            if(menuItem.actionView == null) {
-                menuItem.setActionView(R.layout.navigation_drawer_action_layout)
-            }
-            var textView = menuItem.actionView.findViewById<TextView>(R.id.text_view)
-            textView.text = menuItems[i]
+            menuItem.title = menuItems[i]
+            menuItem.icon = getDrawable(indexes[i])
         }
     }
 
