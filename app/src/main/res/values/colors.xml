@@ -8,5 +8,5 @@
     <color name="editTextBackground">#2C2728</color>
     <color name="textColorHint">#999999</color>
     <color name="dividerColor">#474747</color>
-    <color name="MaterialYellow">#f9a825</color>
+    <color name="materialYellow">#f9a825</color>
 </resources>
