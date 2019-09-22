@@ -27,7 +27,7 @@ class MainRecyclerAdapter(
         holder.name.text = MainViewModel.getData().value?.
             get(MainViewModel.currentType!!)?.get(position)?.name
         holder.number.text = MainViewModel.getData().value?.
-            get(MainViewModel.currentType!!)?.get(position)?.participants.toString()
+            get(MainViewModel.currentType!!)?.get(position)?.participants.toString() + " participants"
         holder.date.text = MainViewModel.getData().value?.
             get(MainViewModel.currentType!!)?.get(position)?.date
     }
@@ -36,9 +36,9 @@ class MainRecyclerAdapter(
         init {
             view.setOnClickListener{ onItemCLickListener(adapterPosition) }
         }
-        val name = view.up
-        var number = view.leftD
-        val date = view.rightD
+        val name = view.name
+        var number = view.participants
+        val date = view.date
 
     }
 }

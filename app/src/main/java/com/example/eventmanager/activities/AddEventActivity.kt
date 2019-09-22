@@ -1,5 +1,6 @@
 package com.example.eventmanager.activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.eventmanager.R
@@ -20,6 +21,7 @@ class AddEventActivity : AppCompatActivity(){
             val eventLocation = location.text.toString()
             val newEvent = NewEvent(eventName, eventType, eventData, eventAdmin, eventLocation)
             MainViewModel.createEvent(newEvent)
+            startActivity(Intent(this, EventActivity::class.java))
         }
     }
 }

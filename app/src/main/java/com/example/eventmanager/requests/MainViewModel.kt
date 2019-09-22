@@ -25,28 +25,30 @@ object MainViewModel : ViewModel() {
     private val api = retrofit.create(API::class.java)
     val menuItemsList = mutableListOf("My events", "Leisure", "Art", "Volunteering", "Patriotism",
         "Media", "Extreme", "Leadership", "Entrepreneurship", "Prevention", "Sport")
+    init {
+        if (!LoginActivity.user.isSuperuser)
+            menuItemsList.removeAt(0)
+    }
     val menuItemsMap = menuItemsList.withIndex().map { Pair(it.value, it.index) }.toMap()
     var currentType: Int? = null
     fun getData(): MutableLiveData<MutableList<MutableList<Event>>> {
         return data
     }
 
-    fun update(type: String){
-        val add = if (LoginActivity.user.isSuperuser) 1 else 0
-        currentType = menuItemsMap[type]?.minus(add) ?: return
+
+    fun update() {
         val call = api.updateData(Request(menuItemsList[currentType!!]))
         call.enqueue(object : Callback<CustomResponse>{
             override fun onFailure(call: Call<CustomResponse>, t: Throwable) {
                 Log.d("Request","$t + kek")
             }
-
             override fun onResponse(call: Call<CustomResponse>, response: Response<CustomResponse>) {
                 currentType?.let {
                     val correctList = MutableList(response.body()!!.datas.size) { Event() }
                     response.body()!!.datas.withIndex().forEach{new ->
                         val splited = new.value.split(',')
                         correctList[new.index] = Event(
-                            splited[0], type, splited[1],
+                            splited[0], menuItemsList[currentType!!], splited[1],
                             splited[2].toInt(), splited[3].toInt(), splited[4]
                         )
                     }
@@ -61,7 +63,7 @@ object MainViewModel : ViewModel() {
         val call = api.addEvent(event)
         call.enqueue(object : Callback<AddResponse>{
             override fun onFailure(call: Call<AddResponse>, t: Throwable) {
-                Log.d("Request","${t}")
+                Log.d("Request","${t} + kek")
             }
 
             override fun onResponse(call: Call<AddResponse>, response: Response<AddResponse>) {
@@ -69,8 +71,9 @@ object MainViewModel : ViewModel() {
             }
 
         })
-        update(event.type)
+        update()
     }
+
 }
 
 

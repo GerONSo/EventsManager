@@ -21,6 +21,13 @@ import com.example.eventmanager.R
 import com.example.eventmanager.adapters.MainRecyclerAdapter
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_event.*
+import androidx.core.os.HandlerCompat.postDelayed
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.os.Handler
+import android.util.Log
+
 
 class EventActivity : AppCompatActivity() {
 
@@ -37,6 +44,7 @@ class EventActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event)
+
         setSupportActionBar(toolbar)
         toggle = ActionBarDrawerToggle(this, drawer_layout, R.string.app_name, R.string.app_name)
         drawer_layout.addDrawerListener(toggle)
@@ -49,6 +57,12 @@ class EventActivity : AppCompatActivity() {
             adapter = mainAdapter
             layoutManager = LinearLayoutManager(this@EventActivity)
         }
+        swiperefresh.setOnRefreshListener {
+            MainViewModel.update()
+            mainRecycler.adapter!!.notifyDataSetChanged()
+            Log.d("Request","Entered")
+            swiperefresh.isRefreshing = false
+        }
         initViews()
     }
 
@@ -56,25 +70,28 @@ class EventActivity : AppCompatActivity() {
         initDrawer()
         nv.itemIconTintList = null
         val mapOfId = mapOf(
-            R.id.leisure to "Leisure",
-            R.id.art to "Art",
-            R.id.volunteering to "Volunteering",
-            R.id.patriotism to "Patriotism",
-            R.id.media to "Media",
-            R.id.extreme to "Extreme",
-            R.id.leadership to "Leadership",
-            R.id.entrepreneurship to "Entrepreneurship",
-            R.id.prevention to "Prevention",
-            R.id.sport to "Sport"
+            R.id.my_events to 0,
+            R.id.leisure to 1,
+            R.id.art to 2,
+            R.id.volunteering to 3,
+            R.id.patriotism to 4,
+            R.id.media to 5,
+            R.id.extreme to 6,
+            R.id.leadership to 7,
+            R.id.entrepreneurship to 8,
+            R.id.prevention to 9,
+            R.id.sport to 10
         )
         toolbar.setTitleTextColor(resources.getColor(R.color.textColorLight))
+        if (LoginActivity.user.isSuperuser)
         nv.setNavigationItemSelectedListener { menuItem ->
 //            menuItem.isChecked = true
             when(menuItem.itemId) {
                     228 -> { }
                 R.id.my_events -> { }
                 else -> {
-                    mapOfId[menuItem.itemId]?.let { MainViewModel.update(it) }
+                    MainViewModel.currentType = mapOfId[menuItem.itemId]?.minus(if (LoginActivity.user.isSuperuser) 1 else 0)
+                    MainViewModel.update()
                     mainRecycler.adapter!!.notifyDataSetChanged()
                 }
             }
@@ -83,10 +100,12 @@ class EventActivity : AppCompatActivity() {
 
     }
 
+
+
     private fun initDrawer() {
         var navigationView: NavigationView = nv
         var menu = navigationView.menu
-        if(true) { //TODO if superuser
+        if(LoginActivity.user.isSuperuser) {
             menu.add(Menu.NONE, 228, 0, "")
             menuItems.add(0, "Added events")
             indexes.add(0, R.drawable.checklist)

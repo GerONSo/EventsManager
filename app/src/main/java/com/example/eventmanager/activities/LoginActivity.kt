@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.UserHandle
 import android.view.View
+import android.widget.Toast
 import com.example.eventmanager.*
 import com.example.eventmanager.data.User
 import com.example.eventmanager.extensions.hideKeyboard
 import com.example.eventmanager.objects.Animator
 import com.example.eventmanager.objects.EditTextChangeHandler
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_login.layout_password
+import kotlinx.android.synthetic.main.activity_register.*
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 
 class LoginActivity : AppCompatActivity() {
@@ -53,8 +56,24 @@ class LoginActivity : AppCompatActivity() {
         }
         btn_login.setOnClickListener {
             user = User(et_login.text.toString(), et_password.text.toString(), true)
-            val intent = Intent(this, EventActivity::class.java)
-            startActivity(intent)
+            RegisterActivity.superusers.forEach {
+                val email = et_login_final.text.toString()
+                val password = et_password_final.text.toString()
+                if (it.login == email && it.password == password) {
+                    RegisterActivity.user = User(email, password, true, "Gleb", "Voitenko")
+                    startActivity(Intent(this, EventActivity::class.java))
+
+                }
+
+                RegisterActivity.users.forEach {
+                    if (it.login == email && it.password == password) {
+                        RegisterActivity.user = User(email, password, false, "Gleb", "Voitenko")
+                        startActivity(Intent(this, EventActivity::class.java))
+
+                    }
+                }
+                Toast.makeText(applicationContext, "Ошибка, повторите ввод", Toast.LENGTH_LONG).show()
+            }
         }
         EditTextChangeHandler.addHandler(
             listOf(et_login, et_password),
