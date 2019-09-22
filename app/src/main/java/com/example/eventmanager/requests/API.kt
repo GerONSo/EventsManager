@@ -1,14 +1,21 @@
-package requests
+package com.example.eventmanager.requests
 
-import adapter.Info
+import com.example.eventmanager.data.Event
+import com.example.eventmanager.data.NewEvent
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.Body
+import retrofit2.http.POST
 
-interface API{
+interface API {
 
-    @GET
-    fun request() : Call<List<Info>>
+    @POST("/Data")
+    fun updateData(@Body type: Request) : Call<CustomResponse>
 
+    @POST("/Suck")
+    fun addEvent(@Body event: NewEvent) : Call<AddResponse>
 }
+
+data class Request(val type: String)
+
+data class CustomResponse(val datas: List<String>)
+data class AddResponse(val suckass: Boolean)

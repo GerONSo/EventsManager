@@ -3,8 +3,10 @@ package com.example.eventmanager.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.UserHandle
 import android.view.View
 import com.example.eventmanager.*
+import com.example.eventmanager.data.User
 import com.example.eventmanager.extensions.hideKeyboard
 import com.example.eventmanager.objects.Animator
 import com.example.eventmanager.objects.EditTextChangeHandler
@@ -13,6 +15,9 @@ import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 
 class LoginActivity : AppCompatActivity() {
 
+    companion object{
+        lateinit var user: User
+    }
     private lateinit var listForAnimating : List<View>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +52,7 @@ class LoginActivity : AppCompatActivity() {
 
         }
         btn_login.setOnClickListener {
+            user = User(et_login.text.toString(), et_password.text.toString(), true)
             val intent = Intent(this, EventActivity::class.java)
             startActivity(intent)
         }

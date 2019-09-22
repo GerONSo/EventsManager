@@ -18,6 +18,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textNoSuggestions"
             android:id="@+id/et_login"
             style="@style/EditText.Login"
             android:background="@drawable/edit_text_up"
@@ -50,6 +51,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textNoSuggestions"
             android:id="@+id/et_password"
             android:background="@drawable/edit_text_down"
             style="@style/EditText.Login.Password"

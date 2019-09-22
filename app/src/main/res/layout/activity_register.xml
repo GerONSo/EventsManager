@@ -2,9 +2,80 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    style="@style/Layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.RegisterActivity"
-    style="@style/Layout">
+    tools:context=".activities.LoginActivity">
+
+
+    <EditText
+        android:id="@+id/et_login_final"
+        style="@style/EditText.Login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        android:background="@drawable/edit_text_up"
+        android:hint="Логин"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="7dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:layout_marginBottom="32dp"
+        app:hintEnabled="false"
+        app:layout_constraintTop_toBottomOf="@+id/et_login_final"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/dividerColor">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_password_final"
+            style="@style/EditText.Login.Password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_down"
+            android:hint="Пароль" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <EditText
+        android:id="@+id/et_name_final"
+        style="@style/EditText.Login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="116dp"
+        android:background="@drawable/edit_text_up"
+        android:hint="Имя"
+        app:layout_constraintTop_toBottomOf="@+id/et_login_final"
+        tools:layout_editor_absoluteX="28dp" />
+
+    <EditText
+        android:id="@+id/et_surname_final"
+        style="@style/EditText.Login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:background="@drawable/edit_text_up"
+        android:hint="Фамилия"
+        app:layout_constraintTop_toBottomOf="@+id/et_name_final"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/btn_register_final"
+        style="@style/Button.Login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:alpha="0.5"
+        android:background="@drawable/button_light"
+        android:text="Register"
+        android:textColor="@color/textColorHint"
+        app:layout_constraintTop_toBottomOf="@+id/et_surname_final"
+        tools:layout_editor_absoluteX="0dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

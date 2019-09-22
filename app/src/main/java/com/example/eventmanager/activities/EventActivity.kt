@@ -1,10 +1,12 @@
 package com.example.eventmanager.activities
 
+import android.content.Intent
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -12,8 +14,11 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.example.eventmanager.MainViewModel
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.eventmanager.requests.MainViewModel
 import com.example.eventmanager.R
+import com.example.eventmanager.adapters.MainRecyclerAdapter
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_event.*
 
@@ -25,6 +30,9 @@ class EventActivity : AppCompatActivity() {
         "Media", "Extreme", "Leadership", "Entrepreneurship", "Prevention", "Sport")
     private val indexes = mutableListOf(R.drawable.calendar, R.drawable.a, R.drawable.b, R.drawable.c, R.drawable.d,
         R.drawable.e, R.drawable.f, R.drawable.g, R.drawable.h, R.drawable.i, R.drawable.j)
+    companion object{
+        lateinit var mainAdapter: MainRecyclerAdapter
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,54 +41,46 @@ class EventActivity : AppCompatActivity() {
         toggle = ActionBarDrawerToggle(this, drawer_layout, R.string.app_name, R.string.app_name)
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
+        mainAdapter = MainRecyclerAdapter{
+            Toast.makeText(applicationContext, "$it",
+                Toast.LENGTH_LONG).show()
+        }
+        mainRecycler.apply {
+            adapter = mainAdapter
+            layoutManager = LinearLayoutManager(this@EventActivity)
+        }
         initViews()
     }
 
     private fun initViews() {
         initDrawer()
         nv.itemIconTintList = null
+        val mapOfId = mapOf(
+            R.id.leisure to "Leisure",
+            R.id.art to "Art",
+            R.id.volunteering to "Volunteering",
+            R.id.patriotism to "Patriotism",
+            R.id.media to "Media",
+            R.id.extreme to "Extreme",
+            R.id.leadership to "Leadership",
+            R.id.entrepreneurship to "Entrepreneurship",
+            R.id.prevention to "Prevention",
+            R.id.sport to "Sport"
+        )
+        toolbar.setTitleTextColor(resources.getColor(R.color.textColorLight))
         nv.setNavigationItemSelectedListener { menuItem ->
 //            menuItem.isChecked = true
             when(menuItem.itemId) {
-                228 -> {
-
-                }
-                R.id.my_events -> {
-
-                }
-                R.id.leisure -> {
-                    Toast.makeText(this, "d", Toast.LENGTH_SHORT).show()
-                }
-                R.id.art -> {
-                    Toast.makeText(this, "a", Toast.LENGTH_SHORT).show()
-                }
-                R.id.volunteering -> {
-                    Toast.makeText(this, "x", Toast.LENGTH_SHORT).show()
-                }
-                R.id.patriotism -> {
-                    Toast.makeText(this, "x", Toast.LENGTH_SHORT).show()
-                }
-                R.id.media -> {
-                    Toast.makeText(this, "x", Toast.LENGTH_SHORT).show()
-                }
-                R.id.extreme -> {
-                    Toast.makeText(this, "x", Toast.LENGTH_SHORT).show()
-                }
-                R.id.leadership -> {
-                    Toast.makeText(this, "x", Toast.LENGTH_SHORT).show()
-                }
-                R.id.entrepreneurship -> {
-                    Toast.makeText(this, "x", Toast.LENGTH_SHORT).show()
-                }
-                R.id.prevention -> {
-                    Toast.makeText(this, "x", Toast.LENGTH_SHORT).show()
-                }
-                R.id.sport -> {
-                    Toast.makeText(this, "x", Toast.LENGTH_SHORT).show()
+                    228 -> { }
+                R.id.my_events -> { }
+                else -> {
+                    mapOfId[menuItem.itemId]?.let { MainViewModel.update(it) }
+                    mainRecycler.adapter!!.notifyDataSetChanged()
                 }
             }
             true
         }
+
     }
 
     private fun initDrawer() {
@@ -106,7 +106,7 @@ class EventActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
             R.id.add -> {
-                //TODO on add click listener
+                startActivity(Intent(this, AddEventActivity::class.java))
                 true
             }
             android.R.id.home -> {
@@ -129,6 +129,4 @@ class EventActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.toolbar_menu, menu)
         return true
     }
-
-
 }
