@@ -32,23 +32,23 @@
 
             </com.google.android.material.appbar.AppBarLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/mainRecycler"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                tools:item="" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mainRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            tools:item="" />
 
-        </LinearLayout>
+    </LinearLayout>
 
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/nv"
-            style="@style/Layout"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            app:headerLayout="@layout/nav_header"
-            app:menu="@menu/activity_main_drawer">
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nv"
+        style="@style/Layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/activity_main_drawer">
 
         </com.google.android.material.navigation.NavigationView>
 
