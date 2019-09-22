@@ -18,7 +18,7 @@
             android:layout_height="?attr/actionBarSize"
             android:id="@+id/toolbar"
             app:popupTheme="@style/AppTheme"
-            android:background="@color/editTextBackground"/>
+            android:background="@color/gay_color"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 

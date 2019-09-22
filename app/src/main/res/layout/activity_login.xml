@@ -21,9 +21,21 @@
             android:id="@+id/et_login"
             style="@style/EditText.Login"
             android:background="@drawable/edit_text_up"
-            android:hint="Login"/>
+            android:hint="Login"
+            android:textColor="@color/colorPrimary"/>
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/kek"
+        android:background="@color/dividerColor"
+        app:layout_constraintTop_toBottomOf="@id/layout_login"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp">
+
+    </View>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -41,18 +53,19 @@
             android:id="@+id/et_password"
             android:background="@drawable/edit_text_down"
             style="@style/EditText.Login.Password"
-            android:hint="Password"/>
-
+            android:hint="Password"
+            android:textColor="@color/colorPrimary"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btn_login"
-        android:background="@drawable/button_light"
+        android:background="@drawable/button_dark"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         style="@style/Button.Login"
+        android:textColor="@color/backgroundColorDark"
         android:text="Log in"
         android:enabled="false"
         android:alpha="0.5"/>
@@ -61,7 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btn_register"
-        android:background="@drawable/button_dark"
+        android:background="@drawable/button_light"
         android:textColor="@color/textColorHint"
         app:layout_constraintTop_toBottomOf="@id/btn_login"
         style="@style/Button.Login"
